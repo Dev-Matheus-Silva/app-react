@@ -1,4 +1,4 @@
-import logo from "../../images/logo.svg";
+import logo from "../../images/placeholders/logo.svg";
 
 export default function Home() {
   return (
