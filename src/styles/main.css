@@ -11,6 +11,10 @@ html {
   font-size: 100%;
 }
 
+#root {
+  height: 100%;
+}
+
 body {
   height: 100%;
   font-family: "Open Sans", sans-serif;
@@ -210,4 +214,10 @@ label {
 
 .create-post__form textarea {
   height: 200px;
+}
+
+/*******************************************/
+
+.MuiDrawer-paper {
+  padding: 20px 40px;
 }

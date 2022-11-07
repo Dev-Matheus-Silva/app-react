@@ -1,24 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./components/pages/Home";
-import Users from "./components/pages/Users";
-import UserBlog from "./components/pages/UserBlog";
-import UserPost from "./components/pages/UserPost";
-import UserPostForm from "./components/pages/UserPostForm.1";
+import Home from "../src/components/pages/Home";
+import UserBlog from "../src/components/pages/UserBlog";
+import Users from "../src/components/pages/Users";
+import UserPostForm from "../src/components/pages/UserPostForm.1";
 
-import "./styles/normalize.css";
-import "./styles/fontawesome.min.css";
-import "./styles/main.css";
+import "../src/styles/fontawesome.min.css";
+import "../src/styles/main.css";
+import "../src/styles/normalize.css";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Users" element={<Users />} />
-        <Route path="/Users/:userId" element={<UserBlog />} />
-        <Route path="/Users/:UsersId/posts/:postId" element={<UserPost />} />
-        <Route path="/Users/:UsersId/posts/new" element={<UserPostForm />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:userId" element={<UserBlog />} />
+        <Route path="/users/posts/new" element={<UserPostForm />} />
       </Routes>
     </BrowserRouter>
   );

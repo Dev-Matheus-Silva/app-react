@@ -1,36 +1,58 @@
 import React from "react";
-import logo from "../../images/placeholders/logo.svg";
+
+import Default from "../templates/Default";
+import AppLoading from "../organisms/AppLoading";
 
 export default function UserPostForm() {
-  return (
-    <div className="wrapper">
-      <div className="app-header">
-        <div className="app-header__logo">
-          <img src={logo} className="responsive" alt="" />
-        </div>
-        <div className="app-header__menu">
-          <i className="fa fa-bars"></i>
-        </div>
-      </div>
+  const [title, setTitle] = React.useState("");
+  const [content, setContent] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
-      <div className="creat-post">
-        <h1>criar</h1>
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
 
-        <form className="creat-post__form">
-          <div className="creat-post__form-name">
-            <label htmlFor="name">Titulo</label>
-            <input type="text" id="name" name="title" />
+    fetch("https://62c4e487abea8c085a7e022a.mockapi.io/users/23/posts", {
+      method: "POST",
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({ title, content }),
+    }).then(() => {
+      setTitle("");
+      setContent("");
+      setIsLoading(false);
+    });
+  };
+
+  return isLoading ? (
+    <AppLoading />
+  ) : (
+    <Default>
+      <div className="create-post">
+        <h1>Criar</h1>
+
+        <form onSubmit={handleFormSubmit} className="create-post__form">
+          <div className="create-post__form-name">
+            <label htmlFor="name">Título</label>
+            <input
+              onChange={(event) => setTitle(event.target.value)}
+              type="text"
+              id="title"
+              name="title"
+              value={title}
+            />
           </div>
-
-          <div className="creat-post__form-content">
-            <label htmlFor="content">conteúdo</label>
-            <textarea name="contet" id="content"></textarea>
+          <div className="create-post__form-content">
+            <label htmlFor="content">Conteúdo</label>
+            <textarea
+              onChange={(event) => setContent(event.target.value)}
+              name="content"
+              id="content"
+              value={content}
+            ></textarea>
           </div>
-          <button className="button-primary">salvar</button>
+          <button className="button-primary">Salvar</button>
         </form>
       </div>
-
-      <div className="app-footer">Módulo react :: Full Stack Development</div>
-    </div>
+    </Default>
   );
 }
