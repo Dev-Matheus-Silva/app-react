@@ -1,6 +1,16 @@
+import React from "react";
+
 import logo from "../../images/placeholders/logo.svg";
 
 export default function Home() {
+  const [users, setUsers] = React.useState([]);
+
+  React.useEffect(()=> {
+    fetch("https://62c4e487abea8c085a7e022a.mockapi.io/users")
+     .then(response => response.json())
+
+  },[]);
+
   return (
     <div className="home center">
       <div className="home__logo">
